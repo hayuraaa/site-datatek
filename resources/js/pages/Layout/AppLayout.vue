@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import { Menu, X, ChevronDown } from 'lucide-vue-next';
+import ScrollToTop from './ScrollToTop.vue';
 
 const mobileMenuOpen = ref(false);
 const programMenuOpen = ref(false);
@@ -269,6 +270,7 @@ const isSubmenuActive = (submenu) => {
         </div>
       </div>
     </footer>
+    <ScrollToTop />
   </div>
 </template>
 
