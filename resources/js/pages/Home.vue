@@ -54,9 +54,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-
-  <Head title="Beranda" />
-
   <!-- Modal Banner -->
   <ModalBanner v-if="banners && banners.length > 0" :banners="banners" />
   <AppLayout>
