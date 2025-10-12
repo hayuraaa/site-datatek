@@ -8,14 +8,31 @@ import { Link, Head } from '@inertiajs/vue3';
 const props = defineProps({
   banners: Array,
   sliders: Array,
+  dashboardUrl: {
+    type: String,
+    default: 'http://dashboard.wikimedia.or.id'
+  }
 });
 
 const currentSlide = ref(0);
 
-//Gunakan sliders dari database, atau fallback ke gambar default
+// Fungsi untuk mendapatkan URL gambar lengkap (sama seperti di ModalBanner)
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  
+  // Jika path sudah lengkap (http/https), gunakan langsung
+  if (imagePath.startsWith('http')) {
+    return imagePath;
+  }
+  
+  // Jika path relatif, gabungkan dengan dashboard URL
+  return `${props.dashboardUrl}/storage/${imagePath}`;
+};
+
+// Gunakan sliders dari database dengan URL yang benar
 const slides = computed(() => {
   if (props.sliders && props.sliders.length > 0) {
-    return props.sliders.map(slider => `/storage/${slider.gambar}`);
+    return props.sliders.map(slider => getImageUrl(slider.gambar));
   }
   // Fallback jika tidak ada slider dari database
   return [
@@ -55,7 +72,11 @@ onUnmounted(() => {
 
 <template>
   <!-- Modal Banner -->
-  <ModalBanner v-if="banners && banners.length > 0" :banners="banners" />
+  <ModalBanner 
+    v-if="banners && banners.length > 0" 
+    :banners="banners"
+    :dashboardUrl="dashboardUrl" />
+  
   <AppLayout>
     <!-- Hero Section with Fullscreen Slider -->
     <section class="relative h-screen w-full overflow-hidden">
@@ -64,7 +85,11 @@ onUnmounted(() => {
         'absolute inset-0 transition-opacity duration-1000',
         currentSlide === index ? 'opacity-100' : 'opacity-0'
       ]">
-        <img :src="slide" :alt="`Slide ${index + 1}`" class="w-full h-full object-cover" />
+        <img 
+          :src="slide" 
+          :alt="`Slide ${index + 1}`" 
+          class="w-full h-full object-cover"
+          @error="(e) => e.target.src = '/slider/1.jpg'" />
       </div>
 
       <!-- Dark Overlay -->
@@ -222,9 +247,6 @@ onUnmounted(() => {
                 ilmiah).
               </p>
             </div>
-            <!-- <a href="#" class="text-[#006699] font-semibold hover:underline">
-              Pelajari lebih lanjut →
-            </a> -->
           </div>
 
         </div>
