@@ -265,7 +265,7 @@ const isSubmenuActive = (submenu) => {
 
         <!-- Copyright -->
         <div class="pt-8 border-t border-gray-300 text-center text-sm text-gray-600">
-          <p>Copyright © 2025 - Lisensi dalam situs ini termasuk tulisan dan gambar merupakan CC-BY-SA 4.0, kecuali
+          <p>Lisensi dalam situs ini termasuk tulisan dan gambar merupakan CC-BY-SA 4.0, kecuali
             dinyatakan berbeda.</p>
         </div>
       </div>
