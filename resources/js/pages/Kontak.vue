@@ -223,7 +223,7 @@ const handleSubmit = () => {
             <div class="container mx-auto px-6 lg:px-8">
                 <div class="max-w-7xl mx-auto">
                     <div class="bg-[#4A76A8] rounded-2xl p-12 shadow-lg">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-white">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-white">
 
                             <!-- Alamat -->
                             <div class="text-center">
@@ -241,16 +241,6 @@ const handleSubmit = () => {
                                 <h3 class="font-bold text-xl mb-4">Alamat surel</h3>
                                 <p class="leading-relaxed">
                                     datateknologi@wikimedia.or.id
-                                </p>
-                            </div>
-
-                            <!-- Tim Data dan Teknologi -->
-                            <div class="text-center">
-                                <div class="text-5xl mb-4">👥</div>
-                                <h3 class="font-bold text-xl mb-4">Tim Data dan Teknologi</h3>
-                                <p class="leading-relaxed">
-                                    <strong>Hisyam Athaya</strong> (Staf Kemitraan Data dan Teknologi)<br>
-                                    <strong>Felisitas Rerung</strong> (Staf Komunikasi Data dan Teknologi)
                                 </p>
                             </div>
 
