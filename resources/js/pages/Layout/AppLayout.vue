@@ -11,7 +11,7 @@ const page = usePage();
 const navigation = [
   { name: 'Beranda', href: '/' },
   {
-    name: 'Program',
+    name: 'Kegiatan',
     href: '#',
     hasDropdown: true,
     submenu: [
@@ -265,8 +265,7 @@ const isSubmenuActive = (submenu) => {
 
         <!-- Copyright -->
         <div class="pt-8 border-t border-gray-300 text-center text-sm text-gray-600">
-          <p>Lisensi dalam situs ini termasuk tulisan dan gambar merupakan CC-BY-SA 4.0, kecuali
-            dinyatakan berbeda.</p>
+          <p>Semua konten situs ini dirilis di bawah Lisensi Creative Commons Attribution-ShareAlike kecuali dinyatakan lain.</p>
         </div>
       </div>
     </footer>

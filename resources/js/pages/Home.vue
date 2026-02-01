@@ -102,7 +102,7 @@ onUnmounted(() => {
           Data dan Teknologi<br>Wikimedia Indonesia
         </h1>
         <p class="text-lg md:text-xl lg:text-2xl text-white/95 leading-relaxed max-w-4xl mb-10 md:mb-12">
-          Divisi dari <a href="https://wikimedia.or.id" target="_blank"
+          Program dari <a href="https://wikimedia.or.id" target="_blank"
             class="text-white/95 font-bold hover:underline">Wikimedia Indonesia</a> dengan misi utama memperkenalkan
           teknologi Wiki dan data terbuka, melalui Wikidata, Wikifunctions, dan MediaWiki.
         </p>
@@ -178,7 +178,7 @@ onUnmounted(() => {
               <img src="/logo-projek/4.png" alt="Wikibase" class="w-full h-48 object-contain mb-6 hover:scale-105 transition-transform duration-300">
             </a>
             <p class="text-gray-600 text-sm leading-relaxed text-center">
-              Wikibase adalah perangkat lunak yang menyediakan ruang kolaboratif untuk mengumpulkan, mengedit, dan
+              Wikibase adalah perangkat lunak yang menyediakan ruang kolaboratif untuk mengumpulkan, menyunting, dan
               mengkurasi informasi secara terstruktur. Wikibase efektif dalam membuka akses berbagi data untuk komputer
               dan manusia dalam multibahasa, menuju Data Terbuka Tertaut.
             </p>
@@ -204,7 +204,7 @@ onUnmounted(() => {
             Kemitraan
           </h2>
           <p class="text-black text-lg max-w-4xl mx-auto leading-relaxed">
-            Kami menyelenggarakan berbagai aktivitas untuk memperkuat komunitas, meningkatkan keterampilan, serta
+            Kami menyelenggarakan berbagai kegiatan untuk memperkuat komunitas, meningkatkan keterampilan, serta
             memperluas jangkauan pengetahuan bebas di Indonesia
           </p>
         </div>
@@ -279,7 +279,7 @@ onUnmounted(() => {
         <!-- Section Header -->
         <div class="text-center mb-12 md:mb-16">
           <h2 class="text-3xl md:text-4xl font-bold text-[#006699] mb-4">
-            Aktivitas Kami
+            Kegiatan Kami
           </h2>
           <p class="text-gray-600 text-lg max-w-4xl mx-auto leading-relaxed">
             Berbagai kegiatan yang kami lakukan bertujuan untuk mendukung penyebaran pengetahuan bebas melalui
@@ -300,7 +300,7 @@ onUnmounted(() => {
               <h3 class="text-xl font-bold text-gray-800 mb-4">WikiLatih</h3>
               <p class="text-gray-600 leading-relaxed">
                 Meskipun kami tidak memiliki otoritas atas konten di Wikipedia, kami dapat membantu Anda memahami
-                Wikipedia dengan lebih baik melalui WikiLatih.
+                Wikipedia dengan lebih baik melalui WikiLatih Wikidata.
               </p>
             </div>
           </div>

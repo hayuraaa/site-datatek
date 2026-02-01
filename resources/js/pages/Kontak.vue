@@ -184,7 +184,7 @@ const handleSubmit = () => {
                         instansi pendidikan, komunitas, media, dan lainnya
                     </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
 
                         <!-- Kolaborasi 1 -->
                         <div class="bg-white p-8 rounded-lg shadow-md">
@@ -214,38 +214,19 @@ const handleSubmit = () => {
                         </div>
 
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Additional Info Section -->
-        <section class="py-12 md:py-16 bg-gray-50">
-            <div class="container mx-auto px-6 lg:px-8">
-                <div class="max-w-7xl mx-auto">
-                    <div class="bg-[#4A76A8] rounded-2xl p-12 shadow-lg">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-white">
-
-                            <!-- Alamat -->
-                            <div class="text-center">
-                                <div class="text-5xl mb-4">📍</div>
-                                <h3 class="font-bold text-xl mb-4">Alamat</h3>
-                                <p class="leading-relaxed">
-                                    TCC Batavia Tower One, Lt. 6 Jalan K.H. Mas Mansyur No. 126 Karet Tengsin, Tanah
-                                    Abang Jakarta Pusat 10220 Indonesia
-                                </p>
-                            </div>
-
-                            <!-- Alamat Surel -->
-                            <div class="text-center">
-                                <div class="text-5xl mb-4">✉️</div>
-                                <h3 class="font-bold text-xl mb-4">Alamat surel</h3>
-                                <p class="leading-relaxed">
-                                    datateknologi@wikimedia.or.id
-                                </p>
-                            </div>
-
+                    <!-- Contact Info Card -->
+                    <div class="max-w-2xl mx-auto">
+                        <div class="bg-[#4A76A8] rounded-2xl p-10 shadow-lg text-center">
+                            <div class="text-6xl mb-4">✉️</div>
+                            <h3 class="font-bold text-2xl text-white mb-3">Hubungi Kami</h3>
+                            <a href="mailto:datateknologi@wikimedia.or.id" 
+                               class="text-xl text-white hover:text-blue-100 transition-colors duration-200 font-medium">
+                                datateknologi@wikimedia.or.id
+                            </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>

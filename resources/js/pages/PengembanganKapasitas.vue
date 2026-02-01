@@ -15,12 +15,12 @@ const programs = [
   },
   {
     title: 'Kopdar',
-    description: 'Kawan Wiki yang ingin berkumpul bersama untuk berbagi cerita dan menyunting Wikipedia dapat mengikuti kegiatan Kopdar. Kegiatan santai untuk seluruh Kawan Wiki bercengkerama mengenal satu sama lain dan bertukar pikiran.',
+    description: 'Kawan Wiki yang ingin berkumpul bersama untuk berbagi cerita dan menyunting Wikidata dapat mengikuti kegiatan Kopdar. Kegiatan santai untuk seluruh Kawan Wiki bercengkerama mengenal satu sama lain dan bertukar pikiran.',
     image: '/program/kopdar.png'
   },
   {
     title: 'Temu Daring',
-    description: 'Sebuah alternatif dari kegiatan WikiKopdar ketika tidak dapat berjabat erat secara langsung. Temu Daring akan mempersatukan seluruh Kawan Wiki dari berbagai daerah dalam satu kesempatan yang sama untuk saling berbagi cerita di daerahnya.',
+    description: 'Sebuah alternatif dari kegiatan Kopdar ketika tidak dapat berjabat erat secara langsung. Temu Daring akan mempersatukan seluruh Kawan Wiki dari berbagai daerah dalam satu kesempatan yang sama untuk saling berbagi cerita di daerahnya.',
     image: '/program/temu_daring.png'
   }
 ];
