@@ -1,6 +1,10 @@
 <script setup>
 import AppLayout from './Layout/AppLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
+
+const showSuccess = ref(false);
+const showError = ref(false);
 
 const form = useForm({
     name: '',
@@ -8,13 +12,25 @@ const form = useForm({
     phone: '',
     subject: '',
     message: '',
-    website_source: 'datatek', // Website source untuk DataTek
 });
 
 const handleSubmit = () => {
+    showSuccess.value = false;
+    showError.value = false;
+
     form.post('/contact-forms/submit', {
         onSuccess: () => {
             form.reset();
+            showSuccess.value = true;
+            setTimeout(() => {
+                showSuccess.value = false;
+            }, 5000);
+        },
+        onError: () => {
+            showError.value = true;
+            setTimeout(() => {
+                showError.value = false;
+            }, 5000);
         },
         preserveScroll: true,
     });
@@ -60,7 +76,9 @@ const handleSubmit = () => {
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <svg class="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
                             </svg>
                         </div>
                         <div class="ml-3">
@@ -96,6 +114,39 @@ const handleSubmit = () => {
                     <div class="order-1 lg:order-2">
                         <form @submit.prevent="handleSubmit" class="space-y-6">
 
+                            <!-- Success Alert -->
+                            <div v-if="showSuccess"
+                                class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-lg animate-pulse">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-semibold text-green-800">Berhasil Terkirim! ✅</p>
+                                        <p class="text-xs text-green-700 mt-1">Terima kasih, pesan Anda telah kami
+                                            terima.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Error Alert -->
+                            <div v-if="showError || $page.props.flash?.error"
+                                class="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-lg">
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 text-red-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm font-semibold text-red-800">Gagal Terkirim! ❌</p>
+                                        <p class="text-xs text-red-700 mt-1">{{ $page.props.flash?.error || 'Terjadi kesalahan, silakan coba lagi.' }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Name Field -->
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
@@ -115,9 +166,9 @@ const handleSubmit = () => {
                                 </label>
                                 <input type="email" id="email" v-model="form.email" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                                    :class="{ 'border-red-500': form.errors.email }"
-                                    placeholder="nama@email.com" />
-                                <p v-if="form.errors.email" class="mt-1 text-sm text-red-600">{{ form.errors.email }}</p>
+                                    :class="{ 'border-red-500': form.errors.email }" placeholder="nama@email.com" />
+                                <p v-if="form.errors.email" class="mt-1 text-sm text-red-600">{{ form.errors.email }}
+                                </p>
                             </div>
 
                             <!-- Phone Field -->
@@ -127,9 +178,9 @@ const handleSubmit = () => {
                                 </label>
                                 <input type="tel" id="phone" v-model="form.phone" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                                    :class="{ 'border-red-500': form.errors.phone }"
-                                    placeholder="08xxxxxxxxxx" />
-                                <p v-if="form.errors.phone" class="mt-1 text-sm text-red-600">{{ form.errors.phone }}</p>
+                                    :class="{ 'border-red-500': form.errors.phone }" placeholder="08xxxxxxxxxx" />
+                                <p v-if="form.errors.phone" class="mt-1 text-sm text-red-600">{{ form.errors.phone }}
+                                </p>
                             </div>
 
                             <!-- Subject Field -->
@@ -139,9 +190,9 @@ const handleSubmit = () => {
                                 </label>
                                 <input type="text" id="subject" v-model="form.subject" required
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                                    :class="{ 'border-red-500': form.errors.subject }"
-                                    placeholder="Topik pesan Anda" />
-                                <p v-if="form.errors.subject" class="mt-1 text-sm text-red-600">{{ form.errors.subject }}</p>
+                                    :class="{ 'border-red-500': form.errors.subject }" placeholder="Topik pesan Anda" />
+                                <p v-if="form.errors.subject" class="mt-1 text-sm text-red-600">{{ form.errors.subject
+                                    }}</p>
                             </div>
 
                             <!-- Message Field -->
@@ -153,7 +204,8 @@ const handleSubmit = () => {
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
                                     :class="{ 'border-red-500': form.errors.message }"
                                     placeholder="Tuliskan pesan atau komentar Anda di sini..."></textarea>
-                                <p v-if="form.errors.message" class="mt-1 text-sm text-red-600">{{ form.errors.message }}</p>
+                                <p v-if="form.errors.message" class="mt-1 text-sm text-red-600">{{ form.errors.message
+                                    }}</p>
                             </div>
 
                             <!-- Submit Button -->
@@ -220,8 +272,8 @@ const handleSubmit = () => {
                         <div class="bg-[#4A76A8] rounded-2xl p-10 shadow-lg text-center">
                             <div class="text-6xl mb-4">✉️</div>
                             <h3 class="font-bold text-2xl text-white mb-3">Hubungi Kami</h3>
-                            <a href="mailto:datateknologi@wikimedia.or.id" 
-                               class="text-xl text-white hover:text-blue-100 transition-colors duration-200 font-medium">
+                            <a href="mailto:datateknologi@wikimedia.or.id"
+                                class="text-xl text-white hover:text-blue-100 transition-colors duration-200 font-medium">
                                 datateknologi@wikimedia.or.id
                             </a>
                         </div>

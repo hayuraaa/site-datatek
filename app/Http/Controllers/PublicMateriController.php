@@ -2,30 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\MateriDatatek;
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class PublicMateriController extends Controller
 {
     public function index()
     {
-        $materiList = MateriDatatek::where('is_active', true)
-            ->where('kategori', 'datatek') // Filter kategori datatek
-            ->orderBy('urutan', 'asc')
-            ->orderBy('created_at', 'desc')
-            ->get()
-            ->map(function ($materi) {
-                return [
-                    'id' => $materi->id,
-                    'judul' => $materi->judul,
-                    'keterangan' => $materi->keterangan,
-                    'jenis_media' => $materi->jenis_media,
-                    'url_media' => $materi->url_media,
-                    'embed_url' => $materi->embed_url,
-                    'urutan' => $materi->urutan,
-                ];
-            });
+        try {
+            $response = Http::timeout(10)->get(
+                env('DASHBOARD_API_URL') . '/api/v1/media',
+                [
+                    'kategori'   => 'situs_datatek',
+                    'per_page'   => 'all',
+                    'sort_by'    => 'created_at',
+                    'sort_order' => 'desc',
+                ]
+            );
+
+            $materiList = [];
+
+            if ($response->successful() && $response->json('success')) {
+                $data  = $response->json('data');
+                $items = isset($data['data']) ? $data['data'] : $data;
+
+                $materiList = collect($items)->map(function ($item) {
+                    return [
+                        'id'          => $item['id'],
+                        'judul'       => $item['judul'],
+                        'keterangan'  => $item['keterangan'],
+                        'jenis_media' => $item['jenis_media'],
+                        'url_media'   => $item['url_media'],
+                        'embed_url'   => $item['embed_url'] ?? null,
+                    ];
+                })->values()->toArray();
+            }
+
+        } catch (\Exception $e) {
+            \Log::error('Materi fetch error: ' . $e->getMessage());
+            $materiList = [];
+        }
 
         return Inertia::render('Materi', [
             'materiList' => $materiList
